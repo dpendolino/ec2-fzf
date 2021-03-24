@@ -55,6 +55,9 @@ func (e *Ec2fzf) GetConnectionDetails(instance *ec2.Instance) string {
 	if e.options.UsePrivateIp {
 		return *instance.PrivateIpAddress
 	}
+	if e.options.UseInstanceId {
+		return *instance.InstanceId
+	}
 	return *instance.PublicDnsName
 }
 

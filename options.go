@@ -8,6 +8,7 @@ import (
 type Options struct {
 	Regions         []string
 	UsePrivateIp    bool
+	UseInstanceId   bool
 	Template        string
 	PreviewTemplate string
 	Filters         []string
@@ -27,15 +28,18 @@ func ParseOptions() Options {
 
 	pflag.StringSlice("region", []string{"us-east-1"}, "The AWS region")
 	pflag.Bool("use-private-ip", true, "Return the private ip of the instance selected")
+	pflag.Bool("use-instance-id", false, "Return the instance id of the instance selected")
 	pflag.StringSlice("filters", []string{}, "Filters to apply with the ec2 api call")
 	pflag.Parse()
 	viper.BindPFlags(pflag.CommandLine)
 
 	viper.RegisterAlias("UsePrivateIp", "use-private-ip")
+	viper.RegisterAlias("UseInstanceId", "use-instance-id")
 	viper.RegisterAlias("regions", "region")
 
 	viper.SetDefault("Region", "us-east-1")
 	viper.SetDefault("UsePrivateIp", false)
+	viper.SetDefault("UseInstanceId", false)
 	viper.SetDefault("Template", `{{ .InstanceId }}: {{index .Tags "Name"}}`)
 	viper.SetDefault("PreviewTemplate", `
 			Instance Id: {{.InstanceId}}
@@ -53,6 +57,7 @@ func ParseOptions() Options {
 	return Options{
 		Regions:         viper.GetStringSlice("Regions"),
 		UsePrivateIp:    viper.GetBool("UsePrivateIp"),
+		UseInstanceId:   viper.GetBool("UseInstanceId"),
 		Template:        viper.GetString("Template"),
 		PreviewTemplate: viper.GetString("PreviewTemplate"),
 		Filters:         viper.GetStringSlice("Filters"),
