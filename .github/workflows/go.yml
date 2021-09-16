@@ -23,23 +23,3 @@ jobs:
 
     - name: Test
       run: go test -v ./...
-      
-    - name: GoKart Scanner
-    # You may pin to the exact commit or the version.
-    # uses: kitabisa/gokart-action@812af2d054faa30a26f071b32c694cd8facca1c0
-      uses: kitabisa/gokart-action@v1.0.0
-      with:
-        # scan on a Go module in the directory
-        directory: . # optional, default is .
-        # input path to custom yml file
-        # input: # optional
-        # file path to write findings output
-        # output: # default is results
-        # marks global variables as dangerous
-        # globalsTainted: # optional
-        # Remote gomodule to scan
-        # remoteModule: # optional
-        # outputs debug logs
-        debug: false # optional
-        # outputs full trace of taint analysis
-        verbose: false # optional
