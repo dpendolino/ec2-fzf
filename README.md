@@ -1,5 +1,7 @@
 # ec2-fzf
 
+[![Go](https://github.com/dpendolino/ec2-fzf/actions/workflows/go.yml/badge.svg)](https://github.com/dpendolino/ec2-fzf/actions/workflows/go.yml)
+
 ec2-fzf is a tool that utilised the [fzf](https://github.com/junegunn/fzf)
 fuzzy matcher in order to retrieve the public or private address of an ec2
 instance.
