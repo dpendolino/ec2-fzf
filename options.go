@@ -54,6 +54,13 @@ func ParseOptions() Options {
 		`,
 	)
 
+	// make sure UsePrivateIp and UseInstanceId are mutually exclusive
+	if viper.GetBool("UsePrivateIp") {
+		viper.Set("UseInstanceId", false)
+	} else if viper.GetBool("UseInstanceId") {
+		viper.Set("UsePrivateIp", false)
+	}
+
 	return Options{
 		Regions:         viper.GetStringSlice("Regions"),
 		UsePrivateIp:    viper.GetBool("UsePrivateIp"),
