@@ -32,6 +32,8 @@ func New() (*Ec2fzf, error) {
 			Config: aws.Config{
 				Region: aws.String(region),
 			},
+			SharedConfigState: session.SharedConfigEnable, // Must be set to enable
+
 		})
 		if err != nil {
 			return nil, err
