@@ -33,6 +33,8 @@ sdk](http://docs.aws.amazon.com/sdk-for-go/api/service/ec2/#DescribeInstancesInp
 ec2-fzf --filters tag:realm=test --filters tag:Name=Test
 ```
 
+You can pass `--use-instance-id=true` to instead of returning the IP address associated with the instance to return the instance's id. This is useful for connecting via `aws ssm` rather than directly.
+
 ## Configuration
 
 You can set the default configuration options in `~/.config/ec2-fzf/config.toml`, example
